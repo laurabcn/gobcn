@@ -2,10 +2,9 @@
 package application
 
 import (
-	""
-	categoryDomain "gobcn/categoryDomain"
-	_ "awesomeProject2/Infrastructure/persistance"
-	"awesomeProject2/Infrastructure/persistance"
+	"gobcn/config"
+	categoryDomain "github.com/laurabcn/gobcn/Domain"
+	"github.com/laurabcn/gobcn/Infrastructure/persistance"
 )
 
 
@@ -16,6 +15,4 @@ func AddCategory(Category *categoryDomain.Category) error {
 	}
 	defer conn.Close()
 	repository := persistence.NewCategoryRepositoryWithRDB(conn)
-
-	return repository.Add(Category)
 }

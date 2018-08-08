@@ -1,4 +1,4 @@
-package CategoryDomain
+package Domain
 
 import (
 	"github.com/satori/go.uuid"
