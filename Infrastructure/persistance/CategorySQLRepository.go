@@ -3,8 +3,7 @@ package persistence
 import (
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql" // driver
-	"awesomeProject2/Domain"
-	"awesomeProject2/Domain/repository"
+
 )
 
 type CategorySQLRepository struct {

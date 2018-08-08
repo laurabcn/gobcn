@@ -1,4 +1,4 @@
-package Domain
+package CategoryDomain
 
 import (
 	"github.com/satori/go.uuid"
@@ -9,4 +9,8 @@ type Category struct {
 	Name string
 	Language string
 	Mostra bool
+}
+
+type CategoryRepository interface {
+	Add(category *Category) error
 }
