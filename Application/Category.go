@@ -15,4 +15,6 @@ func AddCategory(Category *categoryDomain.Category) error {
 	}
 	defer conn.Close()
 	repository := persistence.NewCategoryRepositoryWithRDB(conn)
+
+	return repository.Add(Category)
 }
