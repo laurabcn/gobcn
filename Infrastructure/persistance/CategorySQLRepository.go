@@ -3,17 +3,17 @@ package persistence
 import (
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql" // driver
-
+	categoryDomain "github.com/laurabcn/gobcn/Domain"
 )
 
 type CategorySQLRepository struct {
 	Conn *sql.DB
 }
-func NewCategoryRepositoryWithRDB(conn *sql.DB) repository.CategoryRepository {
+func NewCategoryRepositoryWithRDB(conn *sql.DB) categoryDomain.CategoryRepository {
 	return &CategorySQLRepository{Conn: conn}
 }
 
-func (r *CategorySQLRepository) Add(Category *Domain.Category) error {
+func (r *CategorySQLRepository) Add(Category *categoryDomain.Category) error {
 	stmtIns, err := r.Conn.Prepare("INSERT INTO categories VALUES (?,?,?,?)")
 
 	if err != nil {
