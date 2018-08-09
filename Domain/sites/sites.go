@@ -3,9 +3,9 @@ package sites
 import (
 	"github.com/antchfx/xmlquery"
 	"strings"
-	"awesomeProject2/Domain"
+	"github.com/laurabcn/gobcn/Domain"
 	"github.com/satori/go.uuid"
-	"awesomeProject2/Application"
+	"github.com/laurabcn/gobcn/Application"
 )
 
 func GetCategoriesEnglish() {

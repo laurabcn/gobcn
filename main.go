@@ -1,6 +1,6 @@
 package main
 
-import "awesomeProject2/Domain/sites"
+import "github.com/laurabcn/gobcn/Domain/sites"
 
 func main() {
   sites.GetCategoriesEnglish()
