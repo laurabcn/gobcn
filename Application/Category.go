@@ -2,7 +2,7 @@
 package application
 
 import (
-	"gobcn/config"
+	"github.com/laurabcn/gobcn/config"
 	categoryDomain "github.com/laurabcn/gobcn/Domain"
 	"github.com/laurabcn/gobcn/Infrastructure/persistance"
 )
