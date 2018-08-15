@@ -12,7 +12,7 @@ func NewDBConnection() (*sql.DB, error) {
 	password := getEnvWithDefault("DB_PASSWORD", "root")
 	host := getEnvWithDefault("DB_HOST", "localhost")
 	port := getEnvWithDefault("DB_PORT", "8082")
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/ddd_sample?parseTime=true", user, password, host, port)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/tourism?parseTime=true", user, password, host, port)
 	db, err := sql.Open("mysql", dsn)
 	if err != nil {
 		return nil, err
