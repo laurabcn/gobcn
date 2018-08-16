@@ -1,5 +1,5 @@
 
-package application
+package Application
 
 import (
 	"github.com/laurabcn/gobcn/config"
