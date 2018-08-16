@@ -1,6 +1,8 @@
 package Domain
 
-import "github.com/satory/go.uuid"
+import (
+	"github.com/satory/go.uuid"
+)
 
 type Site struct {
 	Id  uuid.UUID
@@ -20,5 +22,5 @@ type Site struct {
 }
 
 type SiteRepository interface {
-	Add(site *Site) error
+	AddSite(site *Site) error
 }

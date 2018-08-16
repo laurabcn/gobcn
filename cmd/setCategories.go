@@ -1,7 +1,7 @@
 package main
 
 import (
-	xmlquery "github.com/antchfx/xmlquery"
+	"github.com/antchfx/xmlquery"
 	"strings"
 	"github.com/laurabcn/gobcn/Domain"
 	"github.com/satori/go.uuid"

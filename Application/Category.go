@@ -8,7 +8,7 @@ import (
 )
 
 
-func AddCategory(Category *categoryDomain.Category) error {
+func Add(Category *categoryDomain.Category) error {
 	conn, err := config.NewDBConnection()
 	if err != nil {
 		panic(err.Error()) // proper error handling instead of panic in your app1
