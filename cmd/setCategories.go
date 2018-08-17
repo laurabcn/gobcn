@@ -7,7 +7,6 @@ import (
 	"github.com/satori/go.uuid"
 	"github.com/laurabcn/gobcn/Application"
 	"os"
-	//"fmt"
 )
 
 func selectUrl(language string) string {
@@ -46,51 +45,58 @@ func main() {
 		}
 
 		categories := xmlquery.Find(doc,"//code2//item")
-		setCategories(categories, language)
+		var category Domain.Category
+		var uniqesCategories map[string]bool
+		uniqesCategories = make(map[string]bool)
+		for i := 0; i < len(categories); i++ {
+			label := categories[i].SelectAttr("label")
 
-		row := xmlquery.Find(doc, "//row")
-
+			if "" != label && !uniqesCategories[label] && !strings.Contains(label, "Level") {
+				uniqesCategories[label] = true
+				category = Domain.Category{uuid.Must(uuid.NewV4()), label, language, true}
+				Application.Add(&category)
+			}
+		}
 
 		var site Domain.Site
 
-		for i:=0; i<len(row);i++{
-			site = Domain.site(
+		for _, n:= range xmlquery.Find(doc, "//row"){
+			var district = xmlquery.FindOne(n, "//district").InnerText()
+			var phone = xmlquery.FindOne(n, "//phonenumber").InnerText()
+			var web = xmlquery.FindOne(n, "//code_url").InnerText()
+			var content = xmlquery.FindOne(n, "//content").InnerText()
+			var excerpt = xmlquery.FindOne(n, "//excerpt").InnerText()
+			var long = xmlquery.FindOne(n, "//gmapx").InnerText()
+			var lat = xmlquery.FindOne(n, "//gmapy").InnerText()
+			var typeSite = xmlquery.FindOne(n, "//type").InnerText()
+			var barri = xmlquery.FindOne(n, "//addresses//item//barri").InnerText()
+			var address = xmlquery.FindOne(n, "//addresses//item//address").InnerText()
+			var position = xmlquery.FindOne(n, "//pos").InnerText()
+
+			site = Domain.Site{
 				uuid.Must(uuid.NewV4()),
-				xmlquery.Find(doc,"//title"),
+				xmlquery.FindOne(n, "title").InnerText(),
 				language,
 				true,
-				xmlquery.Find(doc,"//district"),
-				xmlquery.Find(doc, "//phonenumber"),
-				xmlquery.Find(doc,"//code_url"),
-				xmlquery.Find(doc,"//content"),
-				xmlquery.Find(doc,"//excerpt"),
-				xmlquery.Find(doc, "//gmapx"),
-				xmlquery.Find(doc, "//gmapy"),
-				xmlquery.Find(doc, "//type"),
-				xmlquery.Find(doc, "//addresses//item//barri"),
-				xmlquery.Find(doc, "//addresses//item//address"),
-			)
+				district,
+				phone,
+				web,
+				content,
+				excerpt,
+				long,
+				lat,
+				typeSite,
+				barri,
+				address,
+				position,
+			}
 
 			Application.AddSite(&site)
 
-		}
-
-
-	}
-
-}
-
-func setCategories(categories, language string) {
-	var category Domain.Category
-	var uniqesCategories map[string]bool
-	uniqesCategories = make(map[string]bool)
-	for i := 0; i < len(categories); i++ {
-		label := categories[i].SelectAttr("label")
-
-		if "" != label && !uniqesCategories[label] && !strings.Contains(label, "Level") {
-			uniqesCategories[label] = true
-			category = Domain.Category{uuid.Must(uuid.NewV4()), label, language, true}
-			Application.AddCategory(&category)
+			for _, x := range xmlquery.Find(n, "//code2//item"){
+				var categorySite = Domain.Category{uuid.Must(uuid.NewV4()), x.SelectAttr("label"), language, true}
+				Application.AddSiteCategory(site, categorySite)
+			}
 		}
 	}
 }

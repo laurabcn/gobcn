@@ -17,3 +17,14 @@ func AddSite(Site *Domain.Site) error {
 
 	return repository.AddSite(Site)
 }
+
+func AddSiteCategory (Site *Domain.Site, category Domain.Category) error {
+	conn, err := config.NewDBConnection()
+	if err != nil {
+		panic(err.Error()) // proper error handling instead of panic in your app1
+	}
+	defer conn.Close()
+	repository := persistence.NewSiteRepositoryWithRDB(conn)
+
+	return repository.AddSiteCategory(Site, category)
+}
