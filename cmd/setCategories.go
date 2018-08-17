@@ -62,7 +62,7 @@ func main() {
 
 		for _, n:= range xmlquery.Find(doc, "//row"){
 			var district = xmlquery.FindOne(n, "//district").InnerText()
-			var phone = xmlquery.FindOne(n, "//phonenumber").InnerText()
+			var phone = xmlquery.FindOne(n, "//phonenumber")
 			var web = xmlquery.FindOne(n, "//code_url").InnerText()
 			var content = xmlquery.FindOne(n, "//content").InnerText()
 			var excerpt = xmlquery.FindOne(n, "//excerpt").InnerText()

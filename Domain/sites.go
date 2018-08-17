@@ -10,7 +10,7 @@ type Site struct {
 	Language string
 	Mostra bool
 	District string
-	Phone string
+	Phone int
 	Web string
 	Content string
 	Excerpt string
