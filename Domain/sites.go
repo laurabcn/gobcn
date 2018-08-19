@@ -22,10 +22,21 @@ type Site struct {
 	Position string
 }
 
+type Category struct {
+	Id  uuid.UUID
+	Name string
+	Language string
+	Mostra bool
+}
+
+type CategoryRepository interface {
+	Add(category *Category) error
+}
+
 type SiteRepository interface {
 	AddSite(site *Site) error
 }
 
 type SiteCatRepository interface {
-	AddSiteCategory(site *Site, category *Category)
+	AddSiteCategory(site *Site, category *Category) error
 }
