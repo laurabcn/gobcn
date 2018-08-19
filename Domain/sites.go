@@ -25,3 +25,7 @@ type Site struct {
 type SiteRepository interface {
 	AddSite(site *Site) error
 }
+
+type SiteCatRepository interface {
+	Add(site *Site, category *Category)
+}

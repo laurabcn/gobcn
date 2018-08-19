@@ -29,7 +29,7 @@ func selectUrl(language string) string {
 func main() {
 
 	languages := os.Args[1:]
-
+SiteCatRepository
 	for i, language := range languages {
 		url := selectUrl(language)
 
@@ -95,7 +95,7 @@ func main() {
 
 			for _, x := range xmlquery.Find(n, "//code2//item"){
 				var categorySite = Domain.Category{uuid.Must(uuid.NewV4()), x.SelectAttr("label"), language, true}
-				Application.AddSiteCategory(site, categorySite)
+				Application.Add(site, categorySite)
 			}
 		}
 	}
