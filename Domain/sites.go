@@ -27,5 +27,5 @@ type SiteRepository interface {
 }
 
 type SiteCatRepository interface {
-	Add(site *Site, category *Category)
+	AddSiteCategory(site *Site, category *Category)
 }
