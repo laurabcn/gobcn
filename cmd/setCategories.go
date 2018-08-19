@@ -29,7 +29,7 @@ func selectUrl(language string) string {
 func main() {
 
 	languages := os.Args[1:]
-SiteCatRepository
+
 	for i, language := range languages {
 		url := selectUrl(language)
 
