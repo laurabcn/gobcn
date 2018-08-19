@@ -1,7 +1,7 @@
 package Domain
 
 import (
-	"github.com/satory/go.uuid"
+	"github.com/satori/go.uuid"
 )
 
 type Site struct {

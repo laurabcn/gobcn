@@ -24,7 +24,7 @@ func AddSiteCategory (Site *Domain.Site, category Domain.Category) error {
 		panic(err.Error()) // proper error handling instead of panic in your app1
 	}
 	defer conn.Close()
-	repository := persistence.NewSiteRepositoryWithRDB(conn)
+	repository := persistence.NewSiteCatRepositoryWithRDB(conn)
 
-	return repository.AddSiteCategory(Site, category)
+	return repository.AddSite(Site, category)
 }
