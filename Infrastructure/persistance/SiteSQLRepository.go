@@ -4,6 +4,7 @@ import (
 	_ "github.com/go-sql-driver/mysql" // driver
 	"database/sql"
 	"github.com/laurabcn/gobcn/Domain"
+	"fmt"
 )
 
 type SiteSQLRepository struct {
@@ -15,7 +16,7 @@ func NewSiteRepositoryWithRDB(conn *sql.DB) Domain.SiteRepository {
 
 func (r *SiteSQLRepository) AddSite(Site *Domain.Site) error {
 	stmtIns, err := r.Conn.Prepare("INSERT INTO sites VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
-
+	fmt.Println(stmtIns)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -41,6 +42,7 @@ func (r *SiteSQLRepository) AddSite(Site *Domain.Site) error {
 		Site.Barri,
 		Site.Address,
 		Site.Position)
+
 	if err != nil {
 		panic(err.Error())
 	}

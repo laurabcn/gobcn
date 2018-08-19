@@ -61,21 +61,65 @@ func main() {
 		var site Domain.Site
 
 		for _, n:= range xmlquery.Find(doc, "//row"){
-			var district = xmlquery.FindOne(n, "//district").InnerText()
-			var phone = xmlquery.FindOne(n, "//phonenumber")
-			var web = xmlquery.FindOne(n, "//code_url").InnerText()
-			var content = xmlquery.FindOne(n, "//content").InnerText()
+			var district string
+			var phone string
+			var web string
+			var title string
+			var barri string
+			var content string
+
+			if xmlquery.FindOne(n, "//district") != nil {
+				district =  xmlquery.FindOne(n, "//district").InnerText()
+			}else {
+				district = "0"
+			}
+
+			if xmlquery.FindOne(n, "//phonenumber") != nil {
+				phone =  xmlquery.FindOne(n, "//phonenumber").InnerText()
+			}else {
+				phone = "0"
+			}
+
+
+			if xmlquery.FindOne(n, "//code_url") != nil {
+				web =  xmlquery.FindOne(n, "//code_url").InnerText()
+			}else {
+				web = "0"
+			}
+
+			if xmlquery.FindOne(n, "//title") != nil {
+				title =  xmlquery.FindOne(n, "//title").InnerText()
+			}else {
+				title = "0"
+			}
+
+			if xmlquery.FindOne(n, "//content") != nil {
+				content =  xmlquery.FindOne(n, "//content").InnerText()
+			}else {
+				content = "0"
+			}
+
 			var excerpt = xmlquery.FindOne(n, "//excerpt").InnerText()
+
 			var long = xmlquery.FindOne(n, "//gmapx").InnerText()
+
 			var lat = xmlquery.FindOne(n, "//gmapy").InnerText()
+
 			var typeSite = xmlquery.FindOne(n, "//type").InnerText()
-			var barri = xmlquery.FindOne(n, "//addresses//item//barri").InnerText()
+
+
+			if xmlquery.FindOne(n, "//addresses//item//barri") != nil {
+				barri =  xmlquery.FindOne(n, "//addresses//item//barri").InnerText()
+			}else {
+				barri = "0"
+			}
+
 			var address = xmlquery.FindOne(n, "//addresses//item//address").InnerText()
 			var position = xmlquery.FindOne(n, "//pos").InnerText()
 
 			site = Domain.Site{
 				uuid.Must(uuid.NewV4()),
-				xmlquery.FindOne(n, "title").InnerText(),
+				title,
 				language,
 				true,
 				district,
@@ -83,8 +127,8 @@ func main() {
 				web,
 				content,
 				excerpt,
-				long,
 				lat,
+				long,
 				typeSite,
 				barri,
 				address,
@@ -95,7 +139,7 @@ func main() {
 
 			for _, x := range xmlquery.Find(n, "//code2//item"){
 				var categorySite = Domain.Category{uuid.Must(uuid.NewV4()), x.SelectAttr("label"), language, true}
-				Application.AddSiteCategory(site, categorySite)
+				Application.AddSiteCategory(&site, &categorySite)
 			}
 		}
 	}
