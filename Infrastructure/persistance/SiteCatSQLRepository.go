@@ -8,7 +8,7 @@ import (
 type SiteCatSQLRepository struct {
 	Conn *sql.DB
 }
-func NewSiteCatRepositoryWithRDB(conn *sql.DB) Domain.SiteRepository {
+func NewSiteCatRepositoryWithRDB(conn *sql.DB) Domain.SiteCatRepository {
 	return &SiteCatSQLRepository{Conn: conn}
 }
 
