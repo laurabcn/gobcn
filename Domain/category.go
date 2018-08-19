@@ -9,7 +9,6 @@ type Category struct {
 	Name string
 	Language string
 	Mostra bool
-	Position string
 }
 
 type CategoryRepository interface {
