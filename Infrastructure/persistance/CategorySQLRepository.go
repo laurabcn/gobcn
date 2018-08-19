@@ -14,7 +14,7 @@ func NewCategoryRepositoryWithRDB(conn *sql.DB) categoryDomain.CategoryRepositor
 }
 
 func (r *CategorySQLRepository) Add(Category *categoryDomain.Category) error {
-	stmtIns, err := r.Conn.Prepare("INSERT INTO categories VALUES (?,?,?,?,?)")
+	stmtIns, err := r.Conn.Prepare("INSERT INTO categories VALUES (?,?,?,?)")
 
 	if err != nil {
 		panic(err.Error())
@@ -25,7 +25,7 @@ func (r *CategorySQLRepository) Add(Category *categoryDomain.Category) error {
 		panic("That's embarrassing...")
 	}
 
-	_, err = stmtIns.Exec(Category.Id, Category.Name, Category.Language, Category.Mostra, Category.Position)
+	_, err = stmtIns.Exec(Category.Id, Category.Name, Category.Language, Category.Mostra)
 	if err != nil {
 		panic(err.Error())
 	}
