@@ -4,7 +4,6 @@ import (
 	_ "github.com/go-sql-driver/mysql" // driver
 	"database/sql"
 	"github.com/laurabcn/gobcn/Domain"
-	"github.com/satori/go.uuid"
 )
 
 type SiteSQLRepository struct {

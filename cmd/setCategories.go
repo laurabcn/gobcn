@@ -95,7 +95,7 @@ func main() {
 
 			for _, x := range xmlquery.Find(n, "//code2//item"){
 				var categorySite = Domain.Category{uuid.Must(uuid.NewV4()), x.SelectAttr("label"), language, true}
-				Application.Add(site, categorySite)
+				Application.AddSiteCategory(site, categorySite)
 			}
 		}
 	}

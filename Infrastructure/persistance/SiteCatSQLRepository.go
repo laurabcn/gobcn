@@ -1,7 +1,10 @@
 package persistence
 
-import "database/sql"
-
+import (
+	"database/sql"
+	"github.com/laurabcn/gobcn/Domain"
+	"github.com/satori/go.uuid"
+)
 type SiteCatSQLRepository struct {
 	Conn *sql.DB
 }
@@ -9,7 +12,7 @@ func NewSiteCatRepositoryWithRDB(conn *sql.DB) Domain.SiteRepository {
 	return &SiteCatSQLRepository{Conn: conn}
 }
 
-func (r *SiteCatSQLRepository) AddSite(Site *Domain.Site, Category *Domain.Category) error {
+func (r *SiteCatSQLRepository) AddSiteCategory(Site *Domain.Site, Category *Domain.Category) error {
 	stmtIns, err := r.Conn.Prepare("INSERT INTO siteCategories VALUES (?,?,?)")
 
 	if err != nil {

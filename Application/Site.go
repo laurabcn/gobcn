@@ -26,5 +26,5 @@ func AddSiteCategory (Site *Domain.Site, category Domain.Category) error {
 	defer conn.Close()
 	repository := persistence.NewSiteCatRepositoryWithRDB(conn)
 
-	return repository.AddSite(Site, category)
+	return repository.AddSiteCategory(Site, category)
 }
